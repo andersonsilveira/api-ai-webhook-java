@@ -1,7 +1,6 @@
 {
   "name": "API.AI webhook demonstration",
   "description": "API.AI webhook demonstration",
-  "repository": "https://github.com/xVir/api-ai-java-webhook",
-  "logo": "http://xvir.github.io/img/apiai.png",
+  "repository": "https://github.com/andersonsilveira/api-ai-webhook-java",
   "keywords": ["api.ai", "natural language"]
 }
