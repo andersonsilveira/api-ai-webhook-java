@@ -41,7 +41,7 @@ public class HelloWorldController {
 	    e.printStackTrace();
 	}
         	
-        return new WebhookResponse("Olá! Confira no mapa de esse é o seu endereço ->\n http://www.google.com.br/?q="+results[0].geometry.location.lat+","+results[0].geometry.location.lng, "Text " + action);
+        return new WebhookResponse("Olá! Confira no mapa de esse é o seu endereço ->\n http://maps.google.com/?q="+results[0].geometry.location.lat+","+results[0].geometry.location.lng, "Text " + action);
     }
 
     private String getAction(String jsonData) {
