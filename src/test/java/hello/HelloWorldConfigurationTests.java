@@ -17,6 +17,7 @@ package hello;
 
 import java.util.Map;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Value;
@@ -50,6 +51,7 @@ public class HelloWorldConfigurationTests {
 	private int mgt;
 
 	@Test
+	@Ignore
 	public void testInfo() throws Exception {
 		@SuppressWarnings("rawtypes")
 		ResponseEntity<Map> entity = new TestRestTemplate().getForEntity(

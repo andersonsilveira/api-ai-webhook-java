@@ -12,6 +12,10 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.maps.GeoApiContext;
+import com.google.maps.GeocodingApi;
+import com.google.maps.model.ComponentFilter;
+import com.google.maps.model.GeocodingResult;
 
 @Controller
 @RequestMapping("/webhook")
@@ -22,7 +26,22 @@ public class HelloWorldController {
 
         System.out.println(jsonData);
         String action = getAction(jsonData);
-        return new WebhookResponse("Hello! A ação selecionada foi " + action, "Text " + action);
+        
+        GeoApiContext context = new GeoApiContext().setApiKey("AIzaSyCIN10kIcLKR4SVCaI21bq0_KrfPbfFgJI");
+        
+        GeocodingResult[] results = null;
+	try {
+	    results = GeocodingApi.newRequest(context)
+		    .address("R. dos aimorés, 335, Campinas - SP")
+		    .components(ComponentFilter.country("BRA")).await();
+	    System.out.println("lat"+ results[0].geometry.location.lat);
+	    System.out.println("long"+ results[0].geometry.location.lng);
+	} catch (Exception e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+        	
+        return new WebhookResponse("Olá! Confira no mapa de esse é o seu endereço ->\n http://www.google.com.br/?q="+results[0].geometry.location.lat+","+results[0].geometry.location.lng, "Text " + action);
     }
 
     private String getAction(String jsonData) {
